@@ -38,11 +38,6 @@ contract InstaSocial is Ownable, ReentrancyGuard {
     function getBalance() public view returns (uint256) {
         return balance;
     }
-
-    function changeOwner(address newOwner) public onlyOwner {
-        transferOwnership(newOwner);
-    }
-
     function createPost(string memory content) public whenNotPaused {
         posts.push(Post({ user: msg.sender, content: content, timestamp: block.timestamp, likes: 0 }));
         emit PostCreated(msg.sender, content, block.timestamp);
